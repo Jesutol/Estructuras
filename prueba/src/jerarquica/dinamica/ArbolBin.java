@@ -1,4 +1,5 @@
 package jerarquica.dinamica;
+import lineales.dinamica.*;
 
 public class ArbolBin {
 	private NodoArbol raiz;
@@ -243,52 +244,92 @@ public class ArbolBin {
 
 
 
-    public String toString(){
-        //retornamos un string 
-        String retorno = "Arbol vacio";
-        
-        if(this.raiz != null){
-            retorno = auxToString(this.raiz);
-        }
-        
-        return retorno;
-    }
-    
-   
-    private String auxToString(NodoArbol raiz){
-        String retorno = "";
-        if(raiz != null){
-            retorno = raiz.getElemen().toString()+":";
-            
-            //obtenemos los hijos de este sub arbol
-            NodoArbol izquierdo = raiz.getIzq();
-            NodoArbol derecho = raiz.getDer();
-            //concatenamos lo que contengan esos hijos
-            if( izquierdo != null){
-                retorno = retorno + " HI:"+izquierdo.getElemen().toString();
-            }else{
-                retorno = retorno + " HI:-";
-            }
-           
-            if( derecho != null){
-                retorno = retorno + " HD:"+derecho.getElemen().toString();
-            }else{
-                retorno = retorno + " HD:-";
-            }
-            //creamos el salto de linea para darle formato
-            retorno = retorno + "\n";
-            //y relizamos algun recorrido de arbol
-            if(izquierdo != null){
-                retorno = retorno + auxToString(izquierdo);
-            }
-            
-            if(derecho != null){
-                retorno = retorno + auxToString(derecho);
-            }
-        }
-        //retornamos dicho string generado
-        return retorno;
-    }
+	public String toString(){
+		//retornamos un string 
+		String retorno = "Arbol vacio";
+
+		if(this.raiz != null){
+			retorno = auxToString(this.raiz);
+		}
+
+		return retorno;
+	}
+
+
+	private String auxToString(NodoArbol raiz){
+		String retorno = "";
+		if(raiz != null){
+			retorno = raiz.getElemen().toString()+":";
+
+			//obtenemos los hijos de este sub arbol
+			NodoArbol izquierdo = raiz.getIzq();
+			NodoArbol derecho = raiz.getDer();
+			//concatenamos lo que contengan esos hijos
+			if( izquierdo != null){
+				retorno = retorno + " HI:"+izquierdo.getElemen().toString();
+			}else{
+				retorno = retorno + " HI:-";
+			}
+
+			if( derecho != null){
+				retorno = retorno + " HD:"+derecho.getElemen().toString();
+			}else{
+				retorno = retorno + " HD:-";
+			}
+			//creamos el salto de linea para darle formato
+			retorno = retorno + "\n";
+			//y relizamos algun recorrido de arbol
+			if(izquierdo != null){
+				retorno = retorno + auxToString(izquierdo);
+			}
+
+			if(derecho != null){
+				retorno = retorno + auxToString(derecho);
+			}
+		}
+		//retornamos dicho string generado
+		return retorno;
+	}
+	public Lista listaPreorder() {
+		Lista list=new Lista();
+		auxPreOrder(raiz,list);
+		return list;
+
+
+	}
+	private void auxPreOrder(NodoArbol aux, Lista list) {
+
+		if(aux!=null) {
+
+			list.insertar(aux.getElemen(), list.longitud()+1);
+			auxPreOrder(aux.getIzq(), list);
+			auxPreOrder(aux.getDer(), list);
+
+		}
+	}
+
+	public Lista listaInorder() {
+		Lista list=new Lista();
+		auxInOrder(raiz,list);
+		return list;
+
+
+	}
+	private void auxInOrder(NodoArbol aux, Lista list) {
+
+		if(aux!=null) {
+
+
+			auxInOrder(aux.getIzq(), list);
+			list.insertar(aux.getElemen(), list.longitud()+1);
+			auxInOrder(aux.getDer(), list);
+
+		}
+
+
+
+
+	}
 
 
 }
