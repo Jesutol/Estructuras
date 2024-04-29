@@ -101,14 +101,13 @@ public class TestArbolBin {
 		System.out.println("Usando el arbol A3");
 		System.out.println("El nivel de A es:"+A3.nivel('A'));
 
-		//test listar
-		/*
+	
         System.out.println("recorremos en los ordenes dados por la teoria de arboles:");
-        System.out.println("preorden:"+A1.listarPreorden().toString());
-        System.out.println("inorden:"+A1.listarInorden().toString());
-        System.out.println("posorden"+A1.listarPosorden().toString());
-        System.out.println("por niveles"+A1.porNivel().toString());
-		 */
+        System.out.println("preorden:"+A1.listaPreorder().toString());
+        System.out.println("inorden:"+A1.listaInorder().toString());
+        System.out.println("posorden"+A1.listaPosOrder().toString());
+        System.out.println("por niveles"+A1.listNivel().toString());
+		
 		//test toString
 		System.out.println("A1:");
 		System.out.println(A1.toString());

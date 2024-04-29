@@ -292,7 +292,7 @@ public class ArbolBin {
 	}
 	public Lista listaPreorder() {
 		Lista list=new Lista();
-		auxPreOrder(raiz,list);
+		auxPreOrder(this.raiz,list);
 		return list;
 
 
@@ -325,7 +325,62 @@ public class ArbolBin {
 			auxInOrder(aux.getDer(), list);
 
 		}
+	}
 
+	public Lista listaPosOrder() {
+		Lista list=new Lista();
+		auxPosOrder(raiz,list);
+		return list;
+
+
+	}
+	private void auxPosOrder(NodoArbol aux, Lista list) {
+
+		if(aux!=null) {
+
+
+			auxPosOrder(aux.getIzq(), list);
+			auxPosOrder(aux.getDer(), list);
+			list.insertar(aux.getElemen(), list.longitud()+1);
+
+		}
+
+
+
+	}
+
+	public Lista listNivel() {
+		Lista list=new Lista();
+		Cola col=new Cola();
+		
+		
+		if(!esVacio()) {
+			col.poner(this.raiz);
+			
+			while(!col.esVacia()) {
+				NodoArbol aux;	aux=(NodoArbol) col.obtenerFrente();
+				list.insertar(aux.getElemen(), list.longitud()+1);
+
+				if(aux.getIzq()!=null) {
+					col.poner(aux.getIzq());
+					
+
+
+				}
+				if(aux.getDer()!=null) {
+					col.poner(aux.getDer());
+
+
+				}
+
+			}
+
+
+
+		}
+
+
+		return list;
 
 
 

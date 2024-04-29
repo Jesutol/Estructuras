@@ -22,7 +22,7 @@ public class Lista {
 
 			if(pos==1) {
 
-				this.cabecera=new Nodo(this.cabecera.getElemen(),this.cabecera);
+				this.cabecera=new Nodo(unElemento,this.cabecera);
 			}else {
 				Nodo aux=this.cabecera;
 				int i=1;
@@ -52,7 +52,7 @@ public class Lista {
 		boolean exito;
 
 
-		if((pos<1||pos>longitud()+1)) {
+		if((pos<1||pos>longitud())) {
 			exito=false;
 		}else {
 
@@ -124,24 +124,32 @@ public class Lista {
 		public Object recuperar(int pos) {
 
 			int i=1;
+			
 			Object elemento;
+			elemento=null;
 			Nodo aux= this.cabecera;
-			if(pos<1||pos>longitud()+1) {
-				elemento=-1;
-			}else {
+			
+			if(!esVacia()) {
+				
+				if(pos<1||pos>longitud()) {
+					elemento=null;
+				}else {
 
-				while(i<pos){
+					while(i<pos){
 
 
-					aux=aux.getEnlace();
-					i++;
+						aux=aux.getEnlace();
+						i++;
+
+
+					}
+					if(aux!=null)
+					elemento=aux.getElemen();
 
 
 				}
-				elemento=aux.getElemen();
-
-
 			}
+			
 			return elemento;
 		}
 
@@ -173,14 +181,17 @@ public class Lista {
 		public int longitud() {
 			
 			int n=0;
-			Nodo aux=cabecera;
+			Nodo aux=this.cabecera;
 			
 			if(!esVacia()){
 				
-				while(aux!=null) {}
+				while(aux!=null) {
+					aux=aux.getEnlace();
+					n++;
+					
+				}
 				
-				aux=aux.getEnlace();
-				n++;
+			
 				
 			}
 			
@@ -241,6 +252,7 @@ public class Lista {
 			String s = "[";
 
 			Nodo aux = this.cabecera;
+			
 
 			if (aux != null) {
 				while (aux != null) {
