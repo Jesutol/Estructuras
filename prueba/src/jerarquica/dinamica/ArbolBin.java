@@ -242,15 +242,53 @@ public class ArbolBin {
 
 
 
-	public String toString(){
-		
-	String nuevaC="wwwwwwwwwwwwwwwwwwwwwwwww";
-	
-	return nuevaC;	
-		
-		
-	}
 
+    public String toString(){
+        //retornamos un string 
+        String retorno = "Arbol vacio";
+        
+        if(this.raiz != null){
+            retorno = auxToString(this.raiz);
+        }
+        
+        return retorno;
+    }
+    
+   
+    private String auxToString(NodoArbol raiz){
+        String retorno = "";
+        if(raiz != null){
+            retorno = raiz.getElemen().toString()+":";
+            
+            //obtenemos los hijos de este sub arbol
+            NodoArbol izquierdo = raiz.getIzq();
+            NodoArbol derecho = raiz.getDer();
+            //concatenamos lo que contengan esos hijos
+            if( izquierdo != null){
+                retorno = retorno + " HI:"+izquierdo.getElemen().toString();
+            }else{
+                retorno = retorno + " HI:-";
+            }
+           
+            if( derecho != null){
+                retorno = retorno + " HD:"+derecho.getElemen().toString();
+            }else{
+                retorno = retorno + " HD:-";
+            }
+            //creamos el salto de linea para darle formato
+            retorno = retorno + "\n";
+            //y relizamos algun recorrido de arbol
+            if(izquierdo != null){
+                retorno = retorno + auxToString(izquierdo);
+            }
+            
+            if(derecho != null){
+                retorno = retorno + auxToString(derecho);
+            }
+        }
+        //retornamos dicho string generado
+        return retorno;
+    }
 
 
 }
