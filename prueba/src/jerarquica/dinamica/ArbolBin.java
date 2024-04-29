@@ -244,7 +244,7 @@ public class ArbolBin {
 
 	public String toString(){
 		
-	String nuevaC="";
+	String nuevaC="w";
 	
 	return nuevaC;	
 		
