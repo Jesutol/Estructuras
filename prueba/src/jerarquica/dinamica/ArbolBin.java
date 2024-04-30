@@ -358,9 +358,9 @@ public class ArbolBin {
 			col.poner(this.raiz);
 			
 			while(!col.esVacia()) {
-				NodoArbol aux;	aux=(NodoArbol) col.obtenerFrente();
+				NodoArbol aux=(NodoArbol) col.obtenerFrente();
 				list.insertar(aux.getElemen(), list.longitud()+1);
-
+				col.sacar();
 				if(aux.getIzq()!=null) {
 					col.poner(aux.getIzq());
 					
