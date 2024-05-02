@@ -341,15 +341,23 @@ public class Lista {
 			
 			
 			char ele=(char)aux.getElemen();
+			//Se fija si encuentra un abridor y lo apila
 			if(ele=='{'||ele=='['||ele=='(') {
 				auxP.apilar(ele);
 				
 				
 			}else if(ele=='}'||ele==']'||ele==')') {
+
+				/*Lo hacemos porque si es igual a 
+    				vacío nos puede dar error y 
+				significa que el abridor no exite
+				*/
 				if(!auxP.esVacia()) {
 				
 				char a=(char)auxP.obtenerTope();	
-				
+				/* Compara que los elementos
+    				tenga abridor y cerrador
+				*/
 				if((corresponde(a,ele))) {		
 					auxP.desapilar();
 				}else {
@@ -359,8 +367,11 @@ public class Lista {
 				
 					
 					
-					
+				
 				}else {
+					/* Si entro aqui y la pila es vacia
+				significa que no hay abridor
+				*/
 					
 					
 					exito=false;
@@ -378,6 +389,9 @@ public class Lista {
 				
 			
 		}
+		
+		*/
+				
 		if(!auxP.esVacia()) {
 			exito=false;
 			
