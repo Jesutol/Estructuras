@@ -389,7 +389,8 @@ public class ArbolBin {
 		boolean verifico=false;
 		
 		if(!esVacio()) {
-			verifico=auxPatron(this.raiz,patron,1);
+			int n=patron.longitud();
+			verifico=auxPatron(this.raiz,patron,1,n);
 			
 			
 		}
@@ -401,12 +402,31 @@ public class ArbolBin {
 	}
 	
 	
-	private boolean auxPatron(NodoArbol n,Lista patron,int i) {
+	private boolean auxPatron(NodoArbol n,Lista patron,int i,int longitud) {
 		
 		boolean verifica=false;
-	
-		if(n.getElemen().equals(patron.recuperar(i))){
-			verifica=auxPatron(n.getIzq(),patron,i++);
+		if(n!=null) {
+			
+			
+			
+			if ((n.getElemen().equals(patron.recuperar(longitud)))&&(n.getIzq()==null&&n.getDer()==null)) {
+			
+					verifica=true;
+			
+				
+			}
+			
+			else if(n.getElemen().equals(patron.recuperar(i))){
+				verifica=auxPatron(n.getIzq(),patron,i+1,longitud);
+				if(!verifica)
+					verifica=auxPatron(n.getDer(),patron,i+1,longitud);
+					
+				
+				
+			}
+			
+			
+			
 			
 			
 		}
