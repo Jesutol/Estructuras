@@ -390,7 +390,7 @@ public class Lista {
 			
 		}
 		
-		*/
+
 				
 		if(!auxP.esVacia()) {
 			exito=false;

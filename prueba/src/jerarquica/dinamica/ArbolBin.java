@@ -384,7 +384,47 @@ public class ArbolBin {
 
 
 
+	}  
+	public boolean verificarPatron(Lista patron) {
+		boolean verifico=false;
+		
+		if(!esVacio()) {
+			verifico=auxPatron(this.raiz,patron,1);
+			
+			
+		}
+		return verifico;
+		
+		
+			
+		
 	}
+	
+	
+	private boolean auxPatron(NodoArbol n,Lista patron,int i) {
+		
+		boolean verifica=false;
+	
+		if(n.getElemen().equals(patron.recuperar(i))){
+			verifica=auxPatron(n.getIzq(),patron,i++);
+			
+			
+		}
+		
+	
+		
+		
+		
+		
+		return verifica;
+	}
+	
+	
+	
+	
+	
+	
+	
 
 
 }
