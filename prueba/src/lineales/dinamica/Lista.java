@@ -275,7 +275,7 @@ public class Lista {
 		Nodo aux=this.cabecera;
 		Nodo aux2=null;
 
-		if(!esVacia()) {
+	
 
 			while(aux!=null) {
 
@@ -308,7 +308,7 @@ public class Lista {
 
 				}
 
-			}
+			
 		}
 		return mul;
 
