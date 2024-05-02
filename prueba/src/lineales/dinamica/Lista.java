@@ -268,7 +268,7 @@ public class Lista {
 		return s;
 	}
 
-	public  Lista localizarMulti(int unElemento) {
+	public  Lista localizarMulti(int num) {
 
 		int i=1;
 		Lista mul=new Lista();
@@ -277,10 +277,10 @@ public class Lista {
 
 		if(!esVacia()) {
 
-			while((i<=longitud())) {
+			while(aux!=null) {
 
 
-				if(i%unElemento==0) {
+				if(i%num==0) {
 
 					if(mul.cabecera==null) {
 						mul.cabecera=new Nodo(aux.getElemen(),null);
@@ -316,21 +316,21 @@ public class Lista {
 
 	}
 	public void eliminaA(Object unE) {
-	    Nodo aux = this.cabecera;
-	    Nodo previo = null;
+		Nodo aux = this.cabecera;
+		Nodo previo = null;
 
-	    while (aux != null) {
-	        if (aux.getElemen().equals(unE)) {
-	            if (previo == null) { 
-	                this.cabecera = aux.getEnlace();
-	            } else {
-	                previo.setEnlace(aux.getEnlace());
-	            }
-	        } else {
-	            previo = aux; 
-	        }
-	        aux = aux.getEnlace(); 
-	    }
+		while (aux != null) {
+			if (aux.getElemen().equals(unE)) {
+				if (previo == null) { 
+					this.cabecera = aux.getEnlace();
+				} else {
+					previo.setEnlace(aux.getEnlace());
+				}
+			} else {
+				previo = aux; 
+			}
+			aux = aux.getEnlace(); 
+		}
 	}
 
 
