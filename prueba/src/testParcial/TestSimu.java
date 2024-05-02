@@ -11,7 +11,7 @@ public class TestSimu {
 		Lista list=new Lista();
 		for(int i=1;i<=10;i++) {
 
-			list.insertar(i, i);
+			list.insertar('a', i);
 			
 
 		}
@@ -19,10 +19,17 @@ public class TestSimu {
 		Lista list2=list.localizarMulti(2);
 		System.out.println(list2.toString());
 
-		list.eliminaA(2);
+	
+
+		list.insertar('{', 1);
+		list.insertar('}', 10);
+		list.insertar('[', 3);
+		list.insertar(']', 8);
+		list.insertar('(', 5);
+		list.insertar(')', 7);
 		System.out.println(list.toString());
-
-
+		System.out.println(list.verificaBalanceo());
+		
 
 
 	}

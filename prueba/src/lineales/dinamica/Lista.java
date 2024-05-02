@@ -249,7 +249,7 @@ public class Lista {
 
 	@Override
 	public String toString() {
-		String s = "[";
+		String s = " ";
 
 		Nodo aux = this.cabecera;
 
@@ -263,7 +263,7 @@ public class Lista {
 			}
 		}
 
-		s += "]";
+		s += " ";
 
 		return s;
 	}
@@ -332,7 +332,69 @@ public class Lista {
 			aux = aux.getEnlace(); 
 		}
 	}
-
+	
+	public boolean verificaBalanceo() {
+		boolean exito=true;
+		Pila auxP=new Pila();
+		Nodo aux=this.cabecera;
+		while(aux!=null&&exito) {
+			
+			
+			char ele=(char)aux.getElemen();
+			if(ele=='{'||ele=='['||ele=='(') {
+				auxP.apilar(ele);
+				
+				
+			}else if(ele=='}'||ele==']'||ele==')') {
+				if(!auxP.esVacia()) {
+				
+				char a=(char)auxP.obtenerTope();	
+				
+				if((corresponde(a,ele))) {		
+					auxP.desapilar();
+				}else {
+					exito=false;
+					
+				}
+				
+					
+					
+					
+				}else {
+					
+					
+					exito=false;
+				}
+					
+			
+				
+				
+			}
+			
+			
+			
+			aux=aux.getEnlace();
+				
+				
+			
+		}
+		if(!auxP.esVacia()) {
+			exito=false;
+			
+		}
+		
+		
+		
+		
+		return exito;
+		
+		
+	}
+	private boolean corresponde(char a, char b) {
+	    return (a == '{' && b == '}') ||
+	           (a == '[' && b == ']') ||
+	           (a == '(' && b == ')');
+	}
 
 
 
