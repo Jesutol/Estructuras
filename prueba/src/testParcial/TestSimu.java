@@ -4,6 +4,7 @@ import jerarquica.dinamica.*;
 public class TestSimu {
 	static String sOk = "OK!", sErr = "ERROR";
 	public static void main(String[] args) {
+		
 		testML();
 	}
 
@@ -25,15 +26,20 @@ public class TestSimu {
 		System.out.println("Insertamos B como HI de A: espera OK!\t\t\t\t"+(A1.insertar(3, 2, 'D') ? sOk: sErr));
 		System.out.println("Insertamos B como HI de A: espera OK!\t\t\t\t"+(A1.insertar(4, 3, 'D') ? sOk: sErr));
 		
-	
+
 		
 		
-		System.out.println("Insertamos E como HI de C: espera OK!\t\t\t\t"+(A1.insertar(2, 1 , 'D') ? sOk: sErr));
-		System.out.println("Insertamos E como HI de C: espera OK!\t\t\t\t"+(A1.insertar(6, 2 , 'I') ? sOk: sErr));
-		System.out.println("Insertamos E como HI de C: espera OK!\t\t\t\t"+(A1.insertar(8, 2 , 'D') ? sOk: sErr));
+		
 		System.out.println(A1.toString());
 		System.out.println(list.toString());
 		System.out.println(A1.verificarPatron(list));
+		Lista l=A1.frontera();
+		System.out.println(l.toString());
+		Lista o=A1.ancestros(2);
+		System.out.println(o.toString());
+		Lista p=A1.des(1);
+		System.out.println(" e");
+		System.out.println(p.toString());
 
 
 	

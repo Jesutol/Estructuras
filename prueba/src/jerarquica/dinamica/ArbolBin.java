@@ -352,18 +352,18 @@ public class ArbolBin {
 	public Lista listNivel() {
 		Lista list=new Lista();
 		Cola col=new Cola();
-		
-		
+
+
 		if(!esVacio()) {
 			col.poner(this.raiz);
-			
+
 			while(!col.esVacia()) {
 				NodoArbol aux=(NodoArbol) col.obtenerFrente();
 				list.insertar(aux.getElemen(), list.longitud()+1);
 				col.sacar();
 				if(aux.getIzq()!=null) {
 					col.poner(aux.getIzq());
-					
+
 
 
 				}
@@ -387,63 +387,163 @@ public class ArbolBin {
 	}  
 	public boolean verificarPatron(Lista patron) {
 		boolean verifico=false;
-		
+
 		if(!esVacio()) {
 			int n=patron.longitud();
 			verifico=auxPatron(this.raiz,patron,1,n);
-			
-			
+
+
 		}
 		return verifico;
-		
-		
-			
-		
+
+
+
+
 	}
-	
-	
+
+
 	private boolean auxPatron(NodoArbol n,Lista patron,int i,int longitud) {
-		
+
 		boolean verifica=false;
 		if(n!=null) {
-			
-			
-			
+
+
+
 			if ((n.getElemen().equals(patron.recuperar(longitud)))&&(n.getIzq()==null&&n.getDer()==null)) {
-			
-					verifica=true;
-			
-				
+
+				verifica=true;
+
+
 			}
-			
+
 			else if(n.getElemen().equals(patron.recuperar(i))){
 				verifica=auxPatron(n.getIzq(),patron,i+1,longitud);
 				if(!verifica)
 					verifica=auxPatron(n.getDer(),patron,i+1,longitud);
-					
-				
-				
+
+
+
 			}
-			
-			
-			
-			
-			
+
+
+
+
+
 		}
-		
-	
-		
-		
-		
-		
+
+
+
+
+
+
 		return verifica;
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+	public Lista frontera() {
+		Lista list=new Lista();
+		if(!esVacio()) {
+
+			auxFrontera(list,this.raiz);
+
+		}
+		return list;
+
+	}
+
+	private void auxFrontera(Lista list,NodoArbol n) {
+
+		if(n!=null) {
+
+			if(n.getDer()==null&&n.getIzq()==null) {
+
+				list.insertar(n.getElemen(), list.longitud()+1);
+
+			}else {
+
+
+				if(n.getIzq()!=null) {
+					auxFrontera(list, n.getIzq());
+
+
+				}
+				if(n.getDer()!=null) {
+					auxFrontera(list, n.getDer());
+
+
+				}
+
+
+
+
+
+			}
+
+		}
+
+
+	}
+
+
+	public Lista ancestros(Object elemen) {
+		Lista list=new Lista();
+		if(!esVacio()&&!this.raiz.getElemen().equals(elemen)){
+
+			auxAncest(this.raiz,list,elemen);
+		}
+
+		return list;
+
+
+
+	}
+	private boolean auxAncest(NodoArbol n,Lista list,Object ele) {
+		boolean control =false;
+		if(n!=null&&n.getElemen().equals(ele)) {
+			control=true;
+			list.insertar(n.getElemen(), 1);
+
+		}else {
+
+			if(n.getIzq()!=null) {
+
+				control=auxAncest(n.getIzq(), list, ele);
+
+			}
+
+			if(!control&&n.getDer()!=null) {
+
+				control=auxAncest(n.getDer(), list, ele);
+
+			}
+			if(control) {
+				
+				list.insertar(n.getElemen(), 1);
+			}
+
+
+		}
+
+
+
+		return control;
+	}
+	public Lista des(Object elemen) {
+		Lista list=new Lista();
+		if(!esVacio()){
+			NodoArbol n= obtenerNodo(this.raiz,elemen);
+			auxPreOrder(n, list);
+			
+		}
+
+		return list;
+
+
+
+	}
 	
 
 
