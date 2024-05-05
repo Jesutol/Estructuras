@@ -5,7 +5,8 @@ public class TestSimu {
 	static String sOk = "OK!", sErr = "ERROR";
 	public static void main(String[] args) {
 		
-		testML();
+	
+		testlista();
 	}
 
 
@@ -21,10 +22,10 @@ public class TestSimu {
 		ArbolBin A1 = new ArbolBin();
 		System.out.println("Instanciamos el arbol, se llama A1");
 		System.out.println("Insertamos: A como raiz: \t\t\t\t\t"+(A1.insertar(1, 1, 'D') ? sOk : sErr));
-		//nivel 2
-		System.out.println("Insertamos B como HI de A: espera OK!\t\t\t\t"+(A1.insertar(2, 1, 'I') ? sOk: sErr));
-		System.out.println("Insertamos B como HI de A: espera OK!\t\t\t\t"+(A1.insertar(3, 2, 'D') ? sOk: sErr));
-		System.out.println("Insertamos B como HI de A: espera OK!\t\t\t\t"+(A1.insertar(4, 3, 'D') ? sOk: sErr));
+		System.out.println("Insertamos B como HI de A: espera OK!\t\t\t\t"+(A1.insertar(2, 1, 'I') ? sOk: sErr));		
+		
+		System.out.println("Insertamos: A como raiz: \t\t\t\t\t"+(A1.insertar(4, 1, 'D') ? sOk : sErr));
+	;
 		
 
 		
@@ -40,6 +41,7 @@ public class TestSimu {
 		Lista p=A1.des(1);
 		System.out.println(" e");
 		System.out.println(p.toString());
+		System.out.println(A1.verificaRepetido(4));
 
 
 	
@@ -48,4 +50,31 @@ public class TestSimu {
 
 
 	}
+	
+	public static void testlista() {
+		
+		
+		 Lista lista = new Lista();
+	        lista.insertar("A", 1); // Posición 1
+	        lista.insertar("B", 2); // Posición 2
+	        lista.insertar("C", 3); // Posición 3
+	        lista.insertar("D", 4); // Posición 4
+	        lista.insertar("E", 5); // Posición 4
+	        lista.insertar("F", 6); // Posición 4
+
+
+	  
+
+	        // Mostrar la lista para verificar el cambio
+	        System.out.println("Lista después de mover el primer nodo al antepenúltimo:");
+	 
+	            System.out.println(lista.toString());
+	        
+
+	        // Mover el tercer nodo al antepenúltimo lugar
+	            System.out.println( lista.cambiaPos(4));
+
+	        System.out.println("Lista después de mover el tercer nodo al antepenúltimo:");
+	      System.out.println(lista.toString());
+}
 }

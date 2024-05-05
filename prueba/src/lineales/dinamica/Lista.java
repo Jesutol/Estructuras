@@ -409,6 +409,76 @@ public class Lista {
 	           (a == '[' && b == ']') ||
 	           (a == '(' && b == ')');
 	}
+	
+	
+	public boolean cambiaPos(int pos) {
+		
+		int i=1;
+		boolean exito=true;
+		if(pos<1||pos>longitud()) {
+			exito=false;
+		}else {
+			
+			if(pos==1) {
+				
+				Nodo temp=new Nodo(this.cabecera.getElemen(),null);
+				this.cabecera=this.cabecera.getEnlace();
+				Nodo aux=this.cabecera;
+				
+				
+				int longitud=longitud();
+				
+				while(i<longitud-1) {
+					
+					aux=aux.getEnlace();
+					i++;
+					
+					
+				}
+				Nodo nuevo=new Nodo(temp.getElemen(),aux.getEnlace());
+				aux.setEnlace(nuevo);
+				
+			}else {
+				int longitud=longitud();
+				Nodo aux=this.cabecera;
+				while(i<pos-1) {
+					
+					aux=aux.getEnlace();
+					i++;
+					
+				}
+				
+				Nodo temp=new Nodo(aux.getEnlace().getElemen(),null);
+				aux.setEnlace(aux.getEnlace().getEnlace());
+				i=pos;
+				
+				
+				while(i<longitud-1) {
+					
+					
+					i++;
+					aux=aux.getEnlace();
+				}
+				
+				Nodo nuevo=new Nodo(temp.getElemen(),aux.getEnlace());
+				aux.setEnlace(nuevo);
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		
+		}
+			
+			
+		
+		return exito;
+			
+	}
 
 
 

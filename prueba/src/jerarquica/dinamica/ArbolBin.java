@@ -545,6 +545,52 @@ public class ArbolBin {
 
 	}
 	
+	public boolean verificaRepetido(Object ele) {
+		boolean p=false;
+		int i=0;
+		if(!esVacio())
+		{
+			i=auxR(this.raiz, ele);
+			if(i>=2) {
+				
+				p=true;
+			}
+			
+		}
+		
+		
+		
+		return p;
+		
+		
+	}
+	
+	private int auxR(NodoArbol n,Object elemen) {
+		int i=0;
+		
+		if(n!=null) {
+			i=auxR(n.getIzq(), elemen)+i;
+			
+			if(n.getElemen().equals(elemen))
+				i=i+1;
+			
+
+			if(n.getDer()!=null&&i<2) {
+				
+				i=auxR(n.getDer(), elemen)+i;
+			}
+			
+		}
+		
+		
+		return i;
+		
+		
+		
+	}
+	
+	
+	
 
 
 }
