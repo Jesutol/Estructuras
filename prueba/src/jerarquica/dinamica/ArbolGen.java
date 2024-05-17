@@ -1,5 +1,5 @@
 package jerarquica.dinamica;
-
+import lineales.dinamica.*;
 public class ArbolGen {
 
 	private NodoGen raiz;
@@ -142,9 +142,30 @@ public class ArbolGen {
 		return this.raiz==null;
 	}
 
+	public Lista ancestros() {
+		Lista list=new Lista();
+
+
+		return list;
+
+
+	}
+	
+	private Lista auxA(NodoGen n, Object elem) {
+		
+		Lista list=new Lista();
+		
+		return list;
+		
+		
+	}
+
+
 	public void vaciar() {
 		this.raiz=null;
 	}
+
+
 
 
 

@@ -5,7 +5,7 @@ public class NodoGen {
 	NodoGen hijoIzquierdo;
 	NodoGen hermanoDerecho;
 	public NodoGen(Object elem, NodoGen hijoIzquierdo, NodoGen hermanoDerecho) {
-		super();
+		
 		this.elem = elem;
 		this.hijoIzquierdo = hijoIzquierdo;
 		this.hermanoDerecho = hermanoDerecho;
