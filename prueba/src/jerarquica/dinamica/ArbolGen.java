@@ -13,13 +13,44 @@ public class ArbolGen {
 	public boolean insertar(Object elemNuevo,Object elemPadre) {
 
 		boolean exito =false;
-		
-		
-		
-		
+		if(this.raiz==null) {
+
+			NodoGen nuevo=new NodoGen(elemNuevo, null, null);
+			this.raiz=nuevo;
+			exito=true;
+
+		}else {
+
+			NodoGen aux=buscaNodo(this.raiz, elemPadre);
+
+
+			if(aux!=null) {
+
+				if(aux.getHijoIzquierdo()==null) {
+					NodoGen nuevo=new NodoGen(elemNuevo, null, null);
+					aux.setHijoIzquierdo(nuevo);
+					exito=true;
+
+
+				}else {
+
+					aux=aux.getHijoIzquierdo();
+
+					while (aux.getHermanoDerecho()!=null) {
+
+						aux=aux.getHermanoDerecho();
+
+					}
+					NodoGen nuevo=new NodoGen(elemNuevo, null, null);
+					aux.setHijoIzquierdo(nuevo);
+					exito=true;
+				}
 
 
 
+			}
+
+		}
 
 		return exito;
 
@@ -67,15 +98,54 @@ public class ArbolGen {
 
 
 
-
-
-
-
-
 		return exito;
 
 
 	}
+
+	public boolean pertenece(Object elem) {
+		boolean encontro=false;
+
+		if(!esVacio()) {
+
+			encontro=auxPertenece(this.raiz, elem);
+		}
+		return encontro;
+	}
+
+	private boolean auxPertenece(NodoGen n,Object elem) {
+
+		boolean encontro=false;
+
+		if(n!=null) {
+
+			if(n.getElem().equals(elem)) {
+
+				encontro=true;
+
+			}else {
+				NodoGen hijo =n.getHijoIzquierdo();
+				while(hijo!=null&&!encontro){
+					encontro=auxPertenece(hijo, elem);
+					hijo=hijo.getHermanoDerecho();
+
+
+				}
+
+			}
+
+		}
+		return encontro;
+	}
+
+	public boolean esVacio() {
+		return this.raiz==null;
+	}
+
+	public void vaciar() {
+		this.raiz=null;
+	}
+
 
 
 

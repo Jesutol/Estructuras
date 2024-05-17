@@ -72,7 +72,7 @@ public class TestSimu {
 	        
 
 	        // Mover el tercer nodo al antepenúltimo lugar
-	            System.out.println( lista.cambiaPos(4));
+	            System.out.println( lista.cambiaPos(6));
 
 	        System.out.println("Lista después de mover el tercer nodo al antepenúltimo:");
 	      System.out.println(lista.toString());
