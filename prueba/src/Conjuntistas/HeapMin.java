@@ -1,6 +1,6 @@
 package Conjuntistas;
 
-public class ArbolHeap {
+public class HeapMin {
 	private Comparable[] heap;
 	private int ultimo;
 	private int tamanio;
