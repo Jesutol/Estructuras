@@ -220,7 +220,7 @@ public class ArbolGen {
 				aux = aux.getHermanoDerecho();
 			}
 
-			//comenzamos el recorrido por los hijos de la subraiz
+		
 			aux = raiz.getHijoIzquierdo();
 			while(aux != null){
 				retorno += "\n"+toStringAux(aux);
