@@ -249,7 +249,7 @@ public class Lista {
 
 	@Override
 	public String toString() {
-		String s = " ";
+		String s = "[";
 
 		Nodo aux = this.cabecera;
 
@@ -263,7 +263,7 @@ public class Lista {
 			}
 		}
 
-		s += " ";
+		s += "]";
 
 		return s;
 	}

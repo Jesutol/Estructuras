@@ -16,6 +16,7 @@ public class TestArbolGen {
 		arbol.insertar("A", "A");  // Insertar raíz
 		arbol.insertar("B", "A");   // Insertar hijo de A
 		arbol.insertar("C", "A");   // Insertar otro hijo de A
+		arbol.insertar("G", "A");   // Insertar otro hijo de A
 		arbol.insertar("D", "B");   // Insertar hijo de B
 		arbol.insertar("E", "B");   // Insertar otro hijo de B
 		arbol.insertar("K", "E");   // Insertar otro hijo de B
@@ -25,8 +26,12 @@ public class TestArbolGen {
 		arbol.insertar("Z", "W");   // Insertar otro hijo de A
 
 		System.out.println(arbol.toString());
-		System.out.println(arbol.ancestros("K").toString());
+		System.out.println("Clon");
+		System.out.println(arbol.clone().toString());
+		System.out.println(arbol.ancestros("Z").toString());
 		System.out.println(arbol.altura());
+		System.out.println(arbol.padre("C"));
+		System.out.println(arbol.nivel("G"));
 
 	}
 }
