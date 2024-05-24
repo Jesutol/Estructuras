@@ -83,6 +83,8 @@ public class ArbolGen {
 
 
 	}
+	
+	
 
 	public boolean pertenece(Object elem) {
 		boolean encontro=false;
