@@ -32,6 +32,10 @@ public class TestArbolGen {
 		System.out.println(arbol.altura());
 		System.out.println(arbol.padre("C"));
 		System.out.println(arbol.nivel("G"));
+		System.out.println(arbol.listarPreorden().toString());
+		System.out.println(arbol.listarInorden().toString());
+		System.out.println(arbol.listarPosorden().toString());
+		System.out.println(arbol.listarNiveles().toString());
 
 	}
 }

@@ -15,35 +15,99 @@ public class ArbolBB {
 
 	public boolean insertar(Comparable elem) {
 		boolean exito=true;
-		
+
 		if(this.raiz==null) {
-			
+
 			this.raiz=new NodoABB(elem,null,null);
-			
+
 		}else {
-			
+
 			exito=auxInsertar(this.raiz,elem);
 		}
-		
+
 		return exito;
 
 
 
 
 	}
-	
+
 	private boolean auxInsertar(NodoABB n,Comparable elem) {
-		
+
 		boolean exito=true;
-		
+
 		if(elem.compareTo(n.getElem())==0) {
-			
+
 			exito=false;
 		}else if(elem.compareTo(n.getElem())<0) {
-			
-			if(n.getHijoIzq()!=null) {}
+
+			if(n.getHijoIzq()!=null) {
+				exito=auxInsertar(n.getHijoIzq(), elem);
+
+			}else {
+
+				n.setHijoIzq(new NodoABB(elem,null,null));
+			}
+		}else {
+
+			if(n.getHijoDer()!=null) {
+				exito=auxInsertar(n.getHijoDer(), elem);
+
+			}else {
+
+				n.setHijoDer(new NodoABB(elem,null,null));
+			}
+
+
+
 		}
 		return exito;
+	}
+	public boolean pertenece(Comparable elem) {
+		boolean exito=false;
+
+		if(!esVacio()) {
+			
+			exito=auxPertenece(this.raiz,elem);
+		}
+
+		return exito;
+
+
+
+
+	}
+
+	private boolean auxPertenece(NodoABB n,Comparable elem) {
+
+		boolean exito=false;
+
+		if(elem.compareTo(n.getElem())==0) {
+
+			exito=true;
+		}else if(elem.compareTo(n.getElem())<0) {
+
+			if((n.getHijoIzq()!=null)&&!exito) {
+				exito=auxPertenece(n.getHijoIzq(), elem);
+
+			}
+		}else {
+
+			if((n.getHijoDer()!=null)&&!exito) {
+				exito=auxPertenece(n.getHijoDer(), elem);
+
+			}
+
+
+
+		}
+		return exito;
+	}
+	public boolean eliminar(Comparable elem) {
+		boolean exito=false;
+		return exito;
+		
+		
 	}
 
 	public boolean esVacio() {
