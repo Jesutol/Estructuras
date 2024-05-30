@@ -198,7 +198,126 @@ public class ArbolBB {
 
 		return n;
 	}
-//pepe
+	//pepe
+	
+	public Lista lista() {
+		Lista list=new Lista();
+		if(!esVacio()) {
+		auxLista(this.raiz,list);
+		}
+		
+		return list;
+	}
+		private void  auxLista(NodoABB n,Lista list ){
+
+		boolean exito=false;
+		if(n!=null) {
+			
+			if(n.getHijoIzq()!=null) {
+				auxLista(n.getHijoIzq(),list);
+			}
+			list.insertar(n.getElem(), list.longitud()+1);
+			if(n.getHijoDer()!=null) {
+				auxLista(n.getHijoDer(),list);
+				
+			}
+			
+			
+			
+			
+			
+		}
+		
+		
+
+		
+	}
+		
+		public Lista listarRango(Comparable min, Comparable max) {
+			Lista list=new Lista();
+			if(!esVacio()) {
+			auxListaRango(this.raiz,list,min,max);
+			}
+			
+			return list;
+		}
+			private void  auxListaRango(NodoABB n,Lista list ,Comparable min, Comparable max){
+
+			boolean exito=false;
+			if(n!=null) {
+				
+				if((n.getHijoIzq()!=null)&&((((Comparable) n.getElem()).compareTo(min) >=0))) {
+					
+					
+					auxListaRango(n.getHijoIzq(),list,min,max);
+				}
+				
+				if(((((Comparable) n.getElem()).compareTo(min) >=0)&&((Comparable) n.getElem()).compareTo(max) <=0)) {
+					list.insertar(n.getElem(), list.longitud()+1);
+					
+				}
+				
+				
+				if(n.getHijoDer()!=null&&((Comparable) n.getElem()).compareTo(max) <=0) {
+					auxListaRango(n.getHijoDer(),list,min,max);
+					
+				}
+				
+				
+				
+				
+				
+			}
+			
+			
+
+			
+		}
+			
+			public Object minimo() {
+				Object min=null;
+				
+				if(!esVacio()) {
+					min=auxMinimo(this.raiz);
+					
+				}
+				
+				return min;
+				
+			}
+			private Object auxMinimo(NodoABB n) {
+				Object min=null;
+				
+				while(n.getHijoIzq()!=null) {
+					n=n.getHijoIzq();
+				}
+				min=n.getElem();
+				return min;
+				
+			}
+			public Object maximo() {
+				Object max=null;
+				
+				if(!esVacio()) {
+					max=auxMax(this.raiz);
+					
+				}
+				
+				return max;
+				
+			}
+			private Object auxMax(NodoABB n) {
+				Object max=null;
+				
+				while(n.getHijoDer()!=null) {
+					n=n.getHijoDer();
+				}
+				max=n.getElem();
+				return max;
+				
+			}
+			
+			
 
 
 

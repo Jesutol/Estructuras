@@ -23,14 +23,13 @@ public class TestArbolBB {
         arbol.insertar(18);  // Nivel 2 (Hijo derecho del nodo con valor 15)
         
         System.out.println(arbol.toString());
+        System.out.println(arbol.lista().toString());
+        System.out.println(arbol.listarRango(3, 15).toString());
         System.out.println(arbol.pertenece(15));
-        System.out.println(arbol.eliminar(18));
-        System.out.println(arbol.toString());
-        System.out.println(arbol.eliminar(15));
-        System.out.println(arbol.toString());
-        System.out.println(arbol.eliminar(10));
-        System.out.println(arbol.toString());
-
+        System.out.println(arbol.minimo());
+        System.out.println(arbol.maximo());
+     
+    
 
 	}
 
