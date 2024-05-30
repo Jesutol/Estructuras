@@ -1,4 +1,4 @@
-package conjuntistas;
+package conjuntistas.estatica;
 
 public class HeapMin {
 	private Comparable[] heap;
