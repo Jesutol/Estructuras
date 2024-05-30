@@ -67,7 +67,7 @@ public class ArbolBB {
 		boolean exito=false;
 
 		if(!esVacio()) {
-			
+
 			exito=auxPertenece(this.raiz,elem);
 		}
 
@@ -104,11 +104,104 @@ public class ArbolBB {
 		return exito;
 	}
 	public boolean eliminar(Comparable elem) {
-		boolean exito=false;
+		boolean exito = false;
+		if (!esVacio()) {
+			exito = auxEliminar(this.raiz, elem);
+		}
 		return exito;
-		
-		
 	}
+
+	private boolean auxEliminar(NodoABB n, Comparable elem) {
+		boolean exito = false;
+
+		if (elem.compareTo(n.getElem()) == 0) {
+			exito = aux2Eliminar(null, n, elem, ' ');
+		} else if (elem.compareTo(n.getElem()) < 0) {
+			if (n.getHijoIzq() != null) {
+				exito = aux2Eliminar(n, n.getHijoIzq(), elem, 'I');
+			}
+		} else {
+			if (n.getHijoDer() != null) {
+				exito = aux2Eliminar(n, n.getHijoDer(), elem, 'D');
+			}
+		}
+
+		return exito;
+	}
+
+	private boolean aux2Eliminar(NodoABB padre, NodoABB hijo, Comparable elem, char p) {
+		boolean exito = false;
+
+		if (elem.compareTo(hijo.getElem()) == 0) {
+			exito = true;
+			NodoABB remplazo = auxRemp(hijo);
+			if (padre == null) {
+				this.raiz = remplazo;
+			} else {
+				if (p == 'I') {
+					padre.setHijoIzq(remplazo);
+				} else if (p == 'D') {
+					padre.setHijoDer(remplazo);
+				}
+			}
+		} else if (elem.compareTo(hijo.getElem()) < 0) {
+			if (hijo.getHijoIzq() != null) {
+				exito = aux2Eliminar(hijo, hijo.getHijoIzq(), elem, 'I');
+			}
+		} else {
+			if (hijo.getHijoDer() != null) {
+				exito = aux2Eliminar(hijo, hijo.getHijoDer(), elem, 'D');
+			}
+		}
+
+		return exito;
+	}
+
+	private NodoABB auxRemp(NodoABB n) {
+		NodoABB nuevo = null;
+		if (n.getHijoIzq() != null && n.getHijoDer() != null) {
+			nuevo = caso3(n);
+		} else if((n.getHijoIzq() != null || n.getHijoDer() != null)){
+			nuevo = caso2(n);
+		}
+		return nuevo;
+	}
+
+	private NodoABB caso2(NodoABB n) {
+		if (n.getHijoIzq() != null) {
+			n= n.getHijoIzq();
+		} else {
+			n= n.getHijoDer();
+		}
+		return n;
+	}
+
+	private NodoABB caso3(NodoABB n) {
+		NodoABB candidato = n.getHijoDer();
+		NodoABB padreCandidato = n;
+
+		// Encontrar el nodo candidato
+		while (candidato.getHijoIzq() != null) {
+			padreCandidato = candidato;
+			candidato = candidato.getHijoIzq();
+		}
+
+		// Reemplazar el valor del nodo n por el valor del candidato
+		n.setElem(candidato.getElem());
+
+		// Eliminar el nodo candidato
+		if (padreCandidato == n) {
+			padreCandidato.setHijoDer(candidato.getHijoDer());
+		} else {
+			padreCandidato.setHijoIzq(candidato.getHijoDer());
+		}
+
+		return n;
+	}
+
+
+
+
 
 	public boolean esVacio() {
 

@@ -24,6 +24,13 @@ public class TestArbolBB {
         
         System.out.println(arbol.toString());
         System.out.println(arbol.pertenece(15));
+        System.out.println(arbol.eliminar(18));
+        System.out.println(arbol.toString());
+        System.out.println(arbol.eliminar(15));
+        System.out.println(arbol.toString());
+        System.out.println(arbol.eliminar(10));
+        System.out.println(arbol.toString());
+
 
 	}
 
