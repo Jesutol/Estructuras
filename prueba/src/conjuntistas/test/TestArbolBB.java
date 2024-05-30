@@ -28,6 +28,8 @@ public class TestArbolBB {
         System.out.println(arbol.pertenece(15));
         System.out.println(arbol.minimo());
         System.out.println(arbol.maximo());
+        System.out.println(arbol.eliminar(10));
+        System.out.println(arbol.toString());
      
     
 
