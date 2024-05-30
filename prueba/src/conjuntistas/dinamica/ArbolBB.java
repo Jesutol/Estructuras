@@ -191,9 +191,9 @@ public class ArbolBB {
 
 		// Eliminar el nodo candidato
 		if (padreCandidato == n) {
-			padreCandidato.setHijoDer(null);
+			padreCandidato.setHijoDer(candidato.getHijoDer());
 		} else {
-			padreCandidato.setHijoIzq(null);
+			padreCandidato.setHijoIzq(candidato.getHijoDer());
 		}
 
 		return n;
