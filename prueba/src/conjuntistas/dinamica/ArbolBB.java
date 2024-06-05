@@ -199,125 +199,125 @@ public class ArbolBB {
 		return n;
 	}
 	//pepe
-	
+
 	public Lista lista() {
 		Lista list=new Lista();
 		if(!esVacio()) {
-		auxLista(this.raiz,list);
+			auxLista(this.raiz,list);
 		}
-		
+
 		return list;
 	}
-		private void  auxLista(NodoABB n,Lista list ){
+	private void  auxLista(NodoABB n,Lista list ){
 
 		boolean exito=false;
 		if(n!=null) {
-			
+
 			if(n.getHijoIzq()!=null) {
 				auxLista(n.getHijoIzq(),list);
 			}
 			list.insertar(n.getElem(), list.longitud()+1);
 			if(n.getHijoDer()!=null) {
 				auxLista(n.getHijoDer(),list);
-				
-			}
-			
-			
-			
-			
-			
-		}
-		
-		
 
-		
+			}
+
+
+
+
+
+		}
+
+
+
+
 	}
-		
-		public Lista listarRango(Comparable min, Comparable max) {
-			Lista list=new Lista();
-			if(!esVacio()) {
+
+	public Lista listarRango(Comparable min, Comparable max) {
+		Lista list=new Lista();
+		if(!esVacio()) {
 			auxListaRango(this.raiz,list,min,max);
-			}
-			
-			return list;
 		}
-			private void  auxListaRango(NodoABB n,Lista list ,Comparable min, Comparable max){
 
-			boolean exito=false;
-			if(n!=null) {
-				
-				if((n.getHijoIzq()!=null)&&((((Comparable) n.getElem()).compareTo(min) >=0))) {
-					
-					
-					auxListaRango(n.getHijoIzq(),list,min,max);
-				}
-				
-				if(((((Comparable) n.getElem()).compareTo(min) >=0)&&((Comparable) n.getElem()).compareTo(max) <=0)) {
-					list.insertar(n.getElem(), list.longitud()+1);
-					
-				}
-				
-				
-				if(n.getHijoDer()!=null&&((Comparable) n.getElem()).compareTo(max) <=0) {
-					auxListaRango(n.getHijoDer(),list,min,max);
-					
-				}
-				
-				
-				
-				
-				
+		return list;
+	}
+	private void  auxListaRango(NodoABB n,Lista list ,Comparable min, Comparable max){
+
+		boolean exito=false;
+		if(n!=null) {
+
+			if((n.getHijoIzq()!=null)&&((((Comparable) n.getElem()).compareTo(min) >=0))) {
+
+
+				auxListaRango(n.getHijoIzq(),list,min,max);
 			}
-			
-			
 
-			
+			if(((((Comparable) n.getElem()).compareTo(min) >=0)&&((Comparable) n.getElem()).compareTo(max) <=0)) {
+				list.insertar(n.getElem(), list.longitud()+1);
+
+			}
+
+
+			if(n.getHijoDer()!=null&&((Comparable) n.getElem()).compareTo(max) <=0) {
+				auxListaRango(n.getHijoDer(),list,min,max);
+
+			}
+
+
+
+
+
 		}
-			
-			public Object minimo() {
-				Object min=null;
-				
-				if(!esVacio()) {
-					min=auxMinimo(this.raiz);
-					
-				}
-				
-				return min;
-				
-			}
-			private Object auxMinimo(NodoABB n) {
-				Object min=null;
-				
-				while(n.getHijoIzq()!=null) {
-					n=n.getHijoIzq();
-				}
-				min=n.getElem();
-				return min;
-				
-			}
-			public Object maximo() {
-				Object max=null;
-				
-				if(!esVacio()) {
-					max=auxMax(this.raiz);
-					
-				}
-				
-				return max;
-				
-			}
-			private Object auxMax(NodoABB n) {
-				Object max=null;
-				
-				while(n.getHijoDer()!=null) {
-					n=n.getHijoDer();
-				}
-				max=n.getElem();
-				return max;
-				
-			}
-			
-			
+
+
+
+
+	}
+
+	public Object minimo() {
+		Object min=null;
+
+		if(!esVacio()) {
+			min=auxMinimo(this.raiz);
+
+		}
+
+		return min;
+
+	}
+	private Object auxMinimo(NodoABB n) {
+		Object min=null;
+
+		while(n.getHijoIzq()!=null) {
+			n=n.getHijoIzq();
+		}
+		min=n.getElem();
+		return min;
+
+	}
+	public Object maximo() {
+		Object max=null;
+
+		if(!esVacio()) {
+			max=auxMax(this.raiz);
+
+		}
+
+		return max;
+
+	}
+	private Object auxMax(NodoABB n) {
+		Object max=null;
+
+		while(n.getHijoDer()!=null) {
+			n=n.getHijoDer();
+		}
+		max=n.getElem();
+		return max;
+
+	}
+
+
 
 
 
@@ -367,7 +367,80 @@ public class ArbolBB {
 
 		}
 	}
+	
+	public ArbolBB clonaParteInvertida(Object elem) {
+		ArbolBB clon=new ArbolBB();
+		if(!esVacio()) {
+			auxCloneParteInvertidad(raiz, clon, elem);
+		}
+		return clon;
+		
+		
+		
+	}
+	
+	
+	private ArbolBB auxCloneParteInvertidad(NodoABB n,ArbolBB clon,Object elem) {
+		
+		NodoABB subArbol=buscaNodo(n, elem);
+		if(subArbol!=null) {
+			NodoABB raizC=new NodoABB(subArbol.getElem(),null,null);
+			clon.raiz=raizC;
+			auxCloneParteInvertida2(subArbol, raizC);
+			
+		}
+		
+		
+		return clon;
+	}
+	private void auxCloneParteInvertida2(NodoABB aux, NodoABB copia) {
+		NodoABB temp;
 
+
+		if(aux.getHijoIzq()!=null) {
+			temp=new NodoABB(aux.getHijoDer().getElem(),null,null);
+			copia.setHijoIzq(temp);
+			auxCloneParteInvertida2(aux.getHijoIzq(),copia.getHijoIzq());
+
+
+
+		}
+		if(aux.getHijoDer()!=null) {
+			temp=new NodoABB(aux.getHijoIzq().getElem(),null,null);
+			copia.setHijoDer(temp);
+			auxCloneParteInvertida2(aux.getHijoDer(),copia.getHijoDer());
+
+
+
+
+		}
+	}
+
+	private NodoABB buscaNodo(NodoABB n,Object elem) {
+
+		NodoABB buscado=null;
+		if(((Comparable) elem).compareTo(n.getElem())==0) {
+
+			buscado=n;
+		}else if(((Comparable) elem).compareTo(n.getElem())<0) {
+
+			if((n.getHijoIzq()!=null)&&buscado==null) {
+				buscado=buscaNodo(n.getHijoIzq(), elem);
+
+			}
+		}else {
+
+			if((n.getHijoDer()!=null)&&buscado==null) {
+				buscado=buscaNodo(n.getHijoDer(), elem);
+
+			}
+
+
+
+		}
+		
+		return buscado;
+	}
 
 
 

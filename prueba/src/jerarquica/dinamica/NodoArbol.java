@@ -4,8 +4,8 @@ public class NodoArbol {
 	private Object elemen;
 	private NodoArbol izq;
 	private NodoArbol der;
-	
-	
+
+
 
 	public NodoArbol(Object elemen, NodoArbol izq, NodoArbol der) {
 		this.elemen = elemen;
@@ -13,8 +13,8 @@ public class NodoArbol {
 		this.der = der;
 	}
 
-	
-	
+
+
 	public Object getElemen() {
 		return elemen;
 	}
@@ -45,7 +45,7 @@ public class NodoArbol {
 	}
 
 
-	
-	
-	
+
+
+
 }

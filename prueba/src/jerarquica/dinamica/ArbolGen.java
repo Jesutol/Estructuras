@@ -28,7 +28,7 @@ public class ArbolGen {
 					while (aux.getHermanoDerecho() != null) {
 						aux = aux.getHermanoDerecho();
 					}
-					
+
 					NodoGen nuevo = new NodoGen(elemNuevo, null, null);
 					aux.setHermanoDerecho(nuevo);
 					exito = true;
@@ -68,65 +68,65 @@ public class ArbolGen {
 
 
 	public boolean insertarPorPos(Object elem, int posPadre) {
-        boolean exito= false;
+		boolean exito= false;
 
-        if (!esVacio()) {
-            int[] contador = {1};
-            exito = auxInsertarPorPos(this.raiz, elem, contador, posPadre);
-        }else {
-        	
-        	this.raiz= new NodoGen(elem, null, null);
-        }
+		if (!esVacio()) {
+			int[] contador = {1};
+			exito = auxInsertarPorPos(this.raiz, elem, contador, posPadre);
+		}else {
 
-        return exito;
-    }
+			this.raiz= new NodoGen(elem, null, null);
+		}
 
-    private boolean auxInsertarPorPos(NodoGen n, Object elem, int[] contador, int posPadre) {
-      boolean exito = false;
+		return exito;
+	}
 
-        if (n != null) {
-            if (contador[0] == posPadre) {
-            	 auxInsertarPorPos2(n, elem);
-                exito = true;
-            } else {
-                NodoGen hijo = n.getHijoIzquierdo();
-               
-                while (hijo != null &&!exito) {
-                	 contador[0]++;
-                    exito = auxInsertarPorPos(hijo, elem, contador, posPadre);
-                    hijo = hijo.getHermanoDerecho();
-                    
-                }
-              
-            }
-        }
+	private boolean auxInsertarPorPos(NodoGen n, Object elem, int[] contador, int posPadre) {
+		boolean exito = false;
 
-        return exito;
-    }
-    private  void auxInsertarPorPos2(NodoGen aux,Object elemNuevo) {
-    	
-    	if (aux != null) {
+		if (n != null) {
+			if (contador[0] == posPadre) {
+				auxInsertarPorPos2(n, elem);
+				exito = true;
+			} else {
+				NodoGen hijo = n.getHijoIzquierdo();
+
+				while (hijo != null &&!exito) {
+					contador[0]++;
+					exito = auxInsertarPorPos(hijo, elem, contador, posPadre);
+					hijo = hijo.getHermanoDerecho();
+
+				}
+
+			}
+		}
+
+		return exito;
+	}
+	private  void auxInsertarPorPos2(NodoGen aux,Object elemNuevo) {
+
+		if (aux != null) {
 			if (aux.getHijoIzquierdo() == null) {
 				NodoGen nuevo = new NodoGen(elemNuevo, null, null);
 				aux.setHijoIzquierdo(nuevo);
-			
+
 			} else {
 				aux = aux.getHijoIzquierdo();
 				while (aux.getHermanoDerecho() != null) {
 					aux = aux.getHermanoDerecho();
 				}
-				
+
 				NodoGen nuevo = new NodoGen(elemNuevo, null, null);
 				aux.setHermanoDerecho(nuevo);
-			
+
 			}
 		}
-	
 
-}
-    
 
-  
+	}
+
+
+
 
 
 	public boolean pertenece(Object elem) {
@@ -486,37 +486,87 @@ public class ArbolGen {
 		}
 		return retorno;
 	}
-	   public boolean patron(Lista list) {
-	        boolean encontro = false;
+	public boolean patron(Lista list) {
+		boolean encontro = false;
 
-	        if (!esVacio() && list.longitud() > 0) {
-	            encontro = auxPatron(this.raiz, list, 1);
-	        }
+		if (!esVacio() && list.longitud() > 0) {
+			encontro = auxPatron(this.raiz, list, 1);
+		}
 
-	        return encontro;
-	    }
+		return encontro;
+	}
 
-	    private boolean auxPatron(NodoGen n, Lista list, int i) {
-	        boolean encontro = false;
+	private boolean auxPatron(NodoGen n, Lista list, int i) {
+		boolean encontro = false;
 
-	        if (n != null) {
-	            if (n.getElem().equals(list.recuperar(i))) {
-	                if (i == list.longitud()) {
-	                    encontro = true; 
-	                } else {
-	                    NodoGen hijo = n.getHijoIzquierdo();
-	                    while (hijo != null && !encontro) {
-	                        encontro = auxPatron(hijo, list, i + 1);
-	                        hijo = hijo.getHermanoDerecho();
-	                    }
-	                }
-	            }
+		if (n != null) {
+			if (n.getElem().equals(list.recuperar(i))) {
+				if (i == list.longitud()) {
+					encontro = true; 
+				} else {
+					NodoGen hijo = n.getHijoIzquierdo();
+					while (hijo != null && !encontro) {
+						encontro = auxPatron(hijo, list, i + 1);
+						hijo = hijo.getHermanoDerecho();
+					}
+				}
+			}
 
-	           
-	        }
 
-	        return encontro;
-	    }
+		}
+
+		return encontro;
+	}
+	
+	public Object masHijos() {
+		Object nodoH=null;
+		if(!esVacio()) {
+			nodoH=auxMasHijos(raiz).getElem();
+			
+		}
+		return nodoH;
+		
+	}
+	
+	private NodoGen auxMasHijos(NodoGen n) {
+		NodoGen masHijos=null;
+		if(n!=null)
+		{
+			int maxActual=cuentaHijos(n);
+			masHijos=n;
+			NodoGen hijo=n.getHijoIzquierdo();
+			while(hijo!=null) {
+				NodoGen temp=(NodoGen) auxMasHijos(hijo);
+				int tempHijos=cuentaHijos(temp);
+				
+				if(tempHijos>maxActual) {
+					maxActual=tempHijos;
+					masHijos=temp;
+					
+				}
+				hijo=hijo.getHermanoDerecho();
+				
+			}
+			
+			
+			
+		}
+		return masHijos;
+	}
+	
+	private int cuentaHijos(NodoGen n) {
+		int i=0;
+		
+		NodoGen hijo=n.getHijoIzquierdo();
+		while(hijo!=null) {
+			i++;
+			
+			hijo=hijo.getHermanoDerecho();
+		}
+		return i;
+		
+		
+	}
 
 
 
