@@ -28,6 +28,7 @@ public class ArbolGen {
 					while (aux.getHermanoDerecho() != null) {
 						aux = aux.getHermanoDerecho();
 					}
+					
 					NodoGen nuevo = new NodoGen(elemNuevo, null, null);
 					aux.setHermanoDerecho(nuevo);
 					exito = true;
@@ -60,39 +61,72 @@ public class ArbolGen {
 			}
 
 		}
-
-
-
-
-
-
 		return encontro;
 	}
 
 
 
 
+	public boolean insertarPorPos(Object elem, int posPadre) {
+        boolean exito= false;
 
-	public boolean insertarPorPos(Object elem,int posHijo ,int posPadre) {
+        if (!esVacio()) {
+            int[] contador = {1};
+            exito = auxInsertarPorPos(this.raiz, elem, contador, posPadre);
+        }else {
+        	
+        	this.raiz= new NodoGen(elem, null, null);
+        }
 
-		boolean exito =false;
+        return exito;
+    }
 
-		if(!esVacio()) {
-			exito=auxInsertarPorPos(this.raiz,0,posHijo,posPadre);
+    private boolean auxInsertarPorPos(NodoGen n, Object elem, int[] contador, int posPadre) {
+      boolean exito = false;
 
+        if (n != null) {
+            if (contador[0] == posPadre) {
+            	 auxInsertarPorPos2(n, elem);
+                exito = true;
+            } else {
+                NodoGen hijo = n.getHijoIzquierdo();
+               
+                while (hijo != null &&!exito) {
+                	 contador[0]++;
+                    exito = auxInsertarPorPos(hijo, elem, contador, posPadre);
+                    hijo = hijo.getHermanoDerecho();
+                    
+                }
+              
+            }
+        }
+
+        return exito;
+    }
+    private  void auxInsertarPorPos2(NodoGen aux,Object elemNuevo) {
+    	
+    	if (aux != null) {
+			if (aux.getHijoIzquierdo() == null) {
+				NodoGen nuevo = new NodoGen(elemNuevo, null, null);
+				aux.setHijoIzquierdo(nuevo);
+			
+			} else {
+				aux = aux.getHijoIzquierdo();
+				while (aux.getHermanoDerecho() != null) {
+					aux = aux.getHermanoDerecho();
+				}
+				
+				NodoGen nuevo = new NodoGen(elemNuevo, null, null);
+				aux.setHermanoDerecho(nuevo);
+			
+			}
 		}
+	
 
-		return exito;
+}
+    
 
-
-	}
-	private boolean auxInsertarPorPos(NodoGen n, int i,int posHijo,int posPadre) {
-
-		boolean exito=false;
-
-		return exito;
-	}
-
+  
 
 
 	public boolean pertenece(Object elem) {
