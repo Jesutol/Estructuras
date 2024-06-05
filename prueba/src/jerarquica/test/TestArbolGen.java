@@ -1,5 +1,6 @@
 package jerarquica.test;
 import jerarquica.dinamica.*;
+import lineales.dinamica.Lista;
 public class TestArbolGen {
 	public static void main(String[] args) {
 		test();
@@ -36,6 +37,16 @@ public class TestArbolGen {
 		System.out.println(arbol.listarInorden().toString());
 		System.out.println(arbol.listarPosorden().toString());
 		System.out.println(arbol.listarNiveles().toString());
+		System.out.println(arbol.listarEntreNiveles(2, 2).toString());
+		 Lista lista = new Lista();
+	        lista.insertar("A", 1); // Posición 1
+	        lista.insertar("B", 2); // Posición 
+	        lista.insertar("B", 3); // Posición
+	      
+	        
+	  
+	        System.out.println(arbol.patron(lista));
+		
 
 	}
 }

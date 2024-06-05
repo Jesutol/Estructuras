@@ -413,7 +413,6 @@ public class ArbolBin {
 
 				verifica=true;
 
-
 			}
 
 			else if(n.getElemen().equals(patron.recuperar(i))){
@@ -422,19 +421,10 @@ public class ArbolBin {
 					verifica=auxPatron(n.getDer(),patron,i+1,longitud);
 
 
-
 			}
 
 
-
-
-
 		}
-
-
-
-
-
 
 		return verifica;
 	}

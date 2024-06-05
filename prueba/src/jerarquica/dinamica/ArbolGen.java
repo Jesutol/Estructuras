@@ -73,18 +73,27 @@ public class ArbolGen {
 
 
 
-	public boolean insertarPorPos() {
+	public boolean insertarPorPos(Object elem,int posHijo ,int posPadre) {
 
 		boolean exito =false;
 
+		if(!esVacio()) {
+			exito=auxInsertarPorPos(this.raiz,0,posHijo,posPadre);
 
+		}
 
 		return exito;
 
 
 	}
-	
-	
+	private boolean auxInsertarPorPos(NodoGen n, int i,int posHijo,int posPadre) {
+
+		boolean exito=false;
+
+		return exito;
+	}
+
+
 
 	public boolean pertenece(Object elem) {
 		boolean encontro=false;
@@ -410,6 +419,71 @@ public class ArbolGen {
 		}
 		return retorno;
 	}
+	public Lista listarEntreNiveles(int min , int max){
+		//vamos a usar una cola para iterar
+		Lista retorno = new Lista();
+		Cola q = new Cola();
+		Cola niveles=new Cola();
+
+		niveles.poner(0);
+		q.poner(this.raiz);
+
+		while(!q.esVacia()){
+			NodoGen aux = (NodoGen) q.obtenerFrente();
+			int nivelActual=(int) niveles.obtenerFrente();
+			q.sacar();
+			niveles.sacar();
+
+			if(min<=nivelActual&&max>=nivelActual) {
+				retorno.insertar(aux.getElem(), retorno.longitud() + 1);
+			}
+
+
+			if(nivelActual<max) {
+				aux = aux.getHijoIzquierdo();
+				while(aux != null){
+					q.poner(aux);
+					niveles.poner(nivelActual+1);
+					aux = aux.getHermanoDerecho();
+
+
+				}
+			}
+		}
+		return retorno;
+	}
+	   public boolean patron(Lista list) {
+	        boolean encontro = false;
+
+	        if (!esVacio() && list.longitud() > 0) {
+	            encontro = auxPatron(this.raiz, list, 1);
+	        }
+
+	        return encontro;
+	    }
+
+	    private boolean auxPatron(NodoGen n, Lista list, int i) {
+	        boolean encontro = false;
+
+	        if (n != null) {
+	            if (n.getElem().equals(list.recuperar(i))) {
+	                if (i == list.longitud()) {
+	                    encontro = true; 
+	                } else {
+	                    NodoGen hijo = n.getHijoIzquierdo();
+	                    while (hijo != null && !encontro) {
+	                        encontro = auxPatron(hijo, list, i + 1);
+	                        hijo = hijo.getHermanoDerecho();
+	                    }
+	                }
+	            }
+
+	           
+	        }
+
+	        return encontro;
+	    }
+
 
 
 
