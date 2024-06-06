@@ -367,30 +367,30 @@ public class ArbolBB {
 
 		}
 	}
-	
+
 	public ArbolBB clonaParteInvertida(Object elem) {
 		ArbolBB clon=new ArbolBB();
 		if(!esVacio()) {
 			auxCloneParteInvertidad(raiz, clon, elem);
 		}
 		return clon;
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 	private ArbolBB auxCloneParteInvertidad(NodoABB n,ArbolBB clon,Object elem) {
-		
+
 		NodoABB subArbol=buscaNodo(n, elem);
 		if(subArbol!=null) {
 			NodoABB raizC=new NodoABB(subArbol.getElem(),null,null);
 			clon.raiz=raizC;
 			auxCloneParteInvertida2(subArbol, raizC);
-			
+
 		}
-		
-		
+
+
 		return clon;
 	}
 	private void auxCloneParteInvertida2(NodoABB aux, NodoABB copia) {
@@ -438,7 +438,7 @@ public class ArbolBB {
 
 
 		}
-		
+
 		return buscado;
 	}
 
@@ -454,6 +454,80 @@ public class ArbolBB {
 		}
 
 		return retorno;
+	}
+	
+	public boolean eliminarSA(Comparable elem) {
+		boolean exito= false;
+		
+		if(!esVacio()) {
+			exito=auxEliminarSa(this.raiz,null,elem);
+			
+			
+		}
+		
+		return exito;
+	}
+	
+	private boolean auxEliminarSa(NodoABB n,NodoABB padre,Comparable elem){
+		
+		boolean exito=false;
+
+		if(elem.compareTo(n.getElem())==0) {
+			
+			if(padre!=null) {
+				NodoABB temp=auxEliminarSA2(n);
+				padre.setHijoIzq(temp);
+
+				exito=true;
+				
+				
+			}else {
+				
+				this.raiz=auxEliminarSA2(n);
+			}
+			
+			
+		}else if(elem.compareTo(n.getElem())<0) {
+
+			if((n.getHijoIzq()!=null)&&!exito) {
+				exito=auxEliminarSa(n.getHijoIzq(), n, elem);
+
+			}
+		}else {
+
+			if((n.getHijoDer()!=null)&&!exito) {
+				exito=auxEliminarSa(n.getHijoDer(), n, elem);
+
+			}
+
+
+
+		}
+		return exito;
+		
+	}
+	
+	private  NodoABB auxEliminarSA2(NodoABB n) {
+		NodoABB temp=null;
+		if(n.getHijoIzq()==null ) {
+			n=n.getHijoDer();
+			
+			
+		}else {
+			temp=n;
+			NodoABB hijo=n.getHijoIzq();
+			while(hijo.getHijoIzq()!=null) {
+				
+				temp=hijo;
+				hijo=hijo.getHijoIzq();
+				
+				
+			}
+			temp.setHijoIzq(hijo.getHijoDer());
+		}
+		
+		
+		return n;
 	}
 
 

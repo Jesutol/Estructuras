@@ -35,7 +35,7 @@ public class TestArbolGen {
 	        lista.insertar("A", 1);
 	        lista.insertar("B", 2); 
 	        lista.insertar("P", 3); 
-	        lista.insertar("K", 4); 
+	        lista.insertar("K", 4);  
 	      
 	        
 	  

@@ -24,7 +24,10 @@ public class TestArbolBB {
         arbol.insertar(18);  // Nivel 2 (Hijo derecho del nodo con valor 15)
         
         System.out.println(arbol.toString());
-        System.out.println(arbol.clonaParteInvertida(10).toString());
+        System.out.println(arbol.clonaParteInvertida(5).toString());
+        System.out.println(arbol.eliminarSA(3));
+        System.out.println(arbol.toString());
+        
         
 
 	}
