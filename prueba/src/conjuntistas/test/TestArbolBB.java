@@ -25,7 +25,10 @@ public class TestArbolBB {
         
         System.out.println(arbol.toString());
         System.out.println(arbol.clonaParteInvertida(5).toString());
-        System.out.println(arbol.eliminarSA(3));
+        System.out.println(arbol.eliminarSA(5));
+        System.out.println(arbol.eliminarSA(5));
+        System.out.println(arbol.eliminarSA(10));
+        System.out.println(arbol.eliminarSA(10));
         System.out.println(arbol.toString());
         
         

@@ -1,4 +1,5 @@
 package jerarquica.dinamica;
+import conjuntistas.dinamica.NodoABB;
 import lineales.dinamica.*;
 public class ArbolGen {
 
@@ -355,15 +356,6 @@ public class ArbolGen {
 		}
 	}
 
-
-
-
-
-
-
-
-
-
 	public void vaciar() {
 		this.raiz=null;
 	}
@@ -517,17 +509,17 @@ public class ArbolGen {
 
 		return encontro;
 	}
-	
+
 	public Object masHijos() {
 		Object nodoH=null;
 		if(!esVacio()) {
 			nodoH=auxMasHijos(raiz).getElem();
-			
+
 		}
 		return nodoH;
-		
+
 	}
-	
+
 	private NodoGen auxMasHijos(NodoGen n) {
 		NodoGen masHijos=null;
 		if(n!=null)
@@ -538,37 +530,110 @@ public class ArbolGen {
 			while(hijo!=null) {
 				NodoGen temp=(NodoGen) auxMasHijos(hijo);
 				int tempHijos=cuentaHijos(temp);
-				
+
 				if(tempHijos>maxActual) {
 					maxActual=tempHijos;
 					masHijos=temp;
-					
+
 				}
 				hijo=hijo.getHermanoDerecho();
-				
+
 			}
-			
-			
-			
+
+
+
 		}
 		return masHijos;
 	}
-	
+
 	private int cuentaHijos(NodoGen n) {
 		int i=0;
-		
+
 		NodoGen hijo=n.getHijoIzquierdo();
 		while(hijo!=null) {
 			i++;
-			
+
 			hijo=hijo.getHermanoDerecho();
 		}
 		return i;
-		
-		
+
+
+	}
+	public boolean elimina (Object elem) {
+		boolean exito =false;
+
+		if(!esVacio()) {
+
+			if(this.raiz.getElem().equals(elem)) {
+
+				exito=true;
+				auxEliminador(null, this.raiz, elem);
+			}else {
+
+				exito=auxElimina(raiz, elem);
+			}
+
+		}
+		return exito;
+
 	}
 
+	private boolean auxElimina(NodoGen n,Object elem) {
+		boolean exito =false;
 
+
+
+		NodoGen hijo=n.getHijoIzquierdo();
+		while(hijo!=null&&!exito) {
+
+			if(elem.equals(hijo.getElem())) {
+				exito=true;
+
+				auxEliminador(n,hijo,elem);
+
+
+			}else {
+				exito=auxElimina(hijo, elem);
+			}
+
+			hijo=hijo.getHermanoDerecho();
+
+
+		}
+
+
+		return exito;
+	}
+
+	private void auxEliminador(NodoGen padre, NodoGen hijo, Object elem) {
+	    if (padre == null) {
+	        // Si el padre es null, estamos eliminando la raíz del árbol.
+	        if (hijo.equals(raiz) && hijo.getElem().equals(elem)) {
+	            // Eliminar la raíz y todo su subárbol
+	     
+	            raiz = null;
+	        }
+	    } else {
+	        // Comprobar si el hijo izquierdo del padre es el nodo a eliminar
+	        if (padre.getHijoIzquierdo() != null && padre.getHijoIzquierdo().getElem().equals(elem)) {
+	            // Eliminar el nodo y ajustar los enlaces del padre
+	            padre.setHijoIzquierdo(hijo.getHermanoDerecho());
+	          
+	        } else {
+	            // Buscar en los hermanos derechos del hijo izquierdo del padre
+	            NodoGen temp = padre.getHijoIzquierdo();
+	            while (temp != null && !temp.getHermanoDerecho().getElem().equals(elem)) {
+	                temp = temp.getHermanoDerecho();
+	            }
+	            if (temp != null && temp.getHermanoDerecho() != null) {
+	                // Ajustar los enlaces para eliminar el nodo
+	                NodoGen hermanoDerecho = temp.getHermanoDerecho();
+	                temp.setHermanoDerecho(hermanoDerecho.getHermanoDerecho());
+	               
+	            }
+	        }
+	    }
+	}
 
 
 

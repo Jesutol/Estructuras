@@ -484,6 +484,7 @@ public class ArbolBB {
 			}else {
 				
 				this.raiz=auxEliminarSA2(n);
+				exito=true;
 			}
 			
 			

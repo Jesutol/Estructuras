@@ -38,10 +38,12 @@ public class TestArbolGen {
 	        lista.insertar("K", 4);  
 	      
 	        
-	  
+	        System.out.println(arbol.elimina("P"));
 	        System.out.println(arbol.patron(lista));
 	        System.out.println(arbol.masHijos());
-		
+	        System.out.println(arbol.elimina("P"));
+	        System.out.println(arbol.toString());
+	  
 
 	}
 }
