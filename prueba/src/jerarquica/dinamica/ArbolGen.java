@@ -604,7 +604,6 @@ public class ArbolGen {
 
 		return exito;
 	}
-
 	private void auxEliminador(NodoGen padre, NodoGen hijo, Object elem) {
 	    if (padre == null) {
 	        // Si el padre es null, estamos eliminando la raíz del árbol.
@@ -635,6 +634,98 @@ public class ArbolGen {
 	    }
 	}
 
+	
+	public boolean jerarquizar (Object elem) {
+		boolean exito =false;
+
+		if(!esVacio()) {
+
+			if(!this.raiz.getElem().equals(elem)) {
+
+		
+				exito=subArboles(raiz, elem);
+			}
+
+		}
+		return exito;
+
+	}
+	
+	private boolean subArboles(NodoGen n,Object elem) {
+		
+		boolean exito=false;
+		if(n!=null) {
+		NodoGen hijo=n.getHijoIzquierdo();
+		while(hijo!=null&&!exito) {
+			exito=auxJerarquiza(hijo, elem);
+			hijo=hijo.getHermanoDerecho();
+			
+		}
+		
+	}
+		return exito;
+	}
+
+	private boolean auxJerarquiza(NodoGen n,Object elem) {
+		boolean exito =false;
+
+
+
+		NodoGen hijo=n.getHijoIzquierdo();
+		while(hijo!=null&&!exito) {
+
+			if(elem.equals(hijo.getElem())) {
+				exito=true;
+
+				auxJerarquizador(n,hijo,elem);
+
+
+			}else {
+				exito=auxJerarquiza(hijo, elem);
+			}
+
+			hijo=hijo.getHermanoDerecho();
+
+
+		}
+
+
+		return exito;
+	}
+
+	private void auxJerarquizador(NodoGen padre, NodoGen hijo, Object elem) {
+		 NodoGen temp = padre.getHijoIzquierdo();
+	        // Comprobar si el hijo izquierdo del padre es el nodo a eliminar
+	        if (padre.getHijoIzquierdo() != null && padre.getHijoIzquierdo().getElem().equals(elem)) {
+	            // Eliminar el nodo y ajustar los enlaces del padre
+	            padre.setHijoIzquierdo(temp.getHermanoDerecho());
+	            
+	          
+	        } else {
+	            // Buscar en los hermanos derechos del hijo izquierdo del padre
+	           
+	            while (temp != null && !temp.getHermanoDerecho().getElem().equals(elem)) {
+	                temp = temp.getHermanoDerecho();
+	            }
+	            if (temp != null && temp.getHermanoDerecho() != null) {
+	                // Ajustar los enlaces para eliminar el nodo
+	                NodoGen hermanoDerecho = temp.getHermanoDerecho();
+	                temp.setHermanoDerecho(hermanoDerecho.getHermanoDerecho());
+	                hijo.setHermanoDerecho(null);
+	               
+	            }
+	        }
+	        if(temp!=null) {
+	        	
+	        	hijo.setHermanoDerecho(padre.getHermanoDerecho());
+	        	padre.setHermanoDerecho(hijo);
+	        	
+	        }
+	    
+	}
+
+
+	
 
 
 
